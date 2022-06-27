@@ -12,7 +12,7 @@ public class Squad {
     private int size;
 
     private static ArrayList<Squad> mInstances = new ArrayList();
-    private  List<Hero> mHero = new ArrayList<Hero>(this.size);
+    private  ArrayList<Hero> mHero = new ArrayList<Hero>();
 
     public Squad(String name, String cause , int size){
         this.name = name;
@@ -50,11 +50,12 @@ public class Squad {
     }
 
 
-    public void addHero(Hero hero){
-        try{
+    public String addHero(Hero hero){
+        if(mHero.size()<this.size){
             mHero.add(hero);
-        }catch(Exception e){
-            System.out.println("You can not have more than "+this.size+" heroes in this squad");
+            return "Success";
+        }else{
+            return "squad full";
         }
     }
 

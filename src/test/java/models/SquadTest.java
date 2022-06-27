@@ -44,6 +44,18 @@ public class SquadTest {
     }
 
 
+    @Test
+    public void test_HeroCannotBeAddedToSquad(){
+        String response = "squad full";
+        Squad mySquad = new Squad("Avengers","Fight Crime",1);
+        Hero firstHero = new Hero("James",40,"Swimming","Singing");
+        Hero secondHero = new Hero("Jack",45,"Dancing","Singing");
+        mySquad.addHero(firstHero);
+        assertEquals(response,mySquad.addHero(secondHero));
+
+    }
+
+
 
 
 
