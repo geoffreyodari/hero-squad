@@ -34,6 +34,17 @@ public class SquadTest {
         assertEquals(size,newSquad.getSize());
     }
 
+    @Test
+    public void test_HeroCanBeAddedToSquad(){
+        Squad newSquad = new Squad("Avengers","Fight Crime",1);
+        Hero newHero = new Hero("James",40,"Swimming","Singing");
+        newSquad.addHero(newHero);
+        assertTrue(newSquad.getHeroes().equals(newHero.getHero()));
+
+    }
+
+
+
 
 
 }
