@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Hero {
     private String name;
@@ -17,6 +18,19 @@ public class Hero {
         this.weakness = weakness;
         this.mInstance.add(this);
     }
+
+    @Override
+    public boolean equals(Object o){
+        if(this==o) return true;
+        if(!(o instanceof Hero))return false;
+        Hero hero = (Hero) o;
+        return  getName() == hero.getName()&&
+                getAge() == hero.getAge()&&
+                getPower() == hero.getPower()&&
+                Objects.equals(getWeakness(),hero.getWeakness());
+
+    }
+
 
     public String getName(){
         return this.name;

@@ -33,7 +33,7 @@ public class Squad {
         return  getName()  == squad.getName()&&
                 getCause() == squad.getCause()&&
                 getSize()  == squad.getSize()&&
-                Objects.equals(mHero , squad.mHero);
+                mHero.equals(squad.getHeroes());
 
     }
 
