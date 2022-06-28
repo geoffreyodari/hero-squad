@@ -40,6 +40,8 @@ public class HeroTest {
         assertEquals(weakness,newHero.getWeakness());
     }
 
+    
+
 
 
 }
