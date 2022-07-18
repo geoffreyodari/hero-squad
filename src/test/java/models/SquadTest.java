@@ -1,5 +1,6 @@
 package models;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,36 +35,36 @@ public class SquadTest {
         assertEquals(size,newSquad.getSize());
     }
 
+
     @Test
     public void test_HeroCanBeAddedToSquad(){
-        Squad newSquad = new Squad("Avengers","Fight Crime",1);
-        Hero newHero = new Hero("James",40,"Swimming","Singing");
+        Squad newSquad = new Squad("Avengers","Fight Crime",4);
+        Hero newHero = new Hero("Jims",40,"Swimming","Singing");
         newSquad.addHero(newHero);
         assertTrue(newSquad.getMembers().equals(newHero.getHero()));
 
     }
 
-
-    @Test
-    public void test_HeroCannotBeAddedToFullSquad(){
-        String response = "squad full";
-        Squad mySquad = new Squad("Avengers","Fight Crime",1);
-        Hero firstHero = new Hero("James",40,"Swimming","Singing");
-        Hero secondHero = new Hero("Jack",40,"Swimming","Singing");
-        mySquad.addHero(firstHero);
-        assertFalse(mySquad.addHero(secondHero));
-
-    }
-
     @Test
     public void test_DuplicateHeroCannotBeAddedToSquad(){
-        Squad mySquad2 = new Squad("Avengers","Fight Crime",3);
+        Squad mySquad2 = new Squad("Avengers","Fight Crime",5);
         Hero firstHero = new Hero("James",40,"Swimming","Singing");
         Hero secondHero = new Hero("James",41,"Swimming","Singing");
         mySquad2.addHero(firstHero);
         assertTrue(mySquad2.heroExists(secondHero));
 
     }
+    @Test
+    public void test_ThrowsExceptionHeroCannotBeAddedToFullSquad(){
+        Assertions.assertThrows(UnsupportedOperationException.class, () -> {
+            Squad mySquad = new Squad("Avengers","Fight Crime",1);
+            Hero firstHero = new Hero("James",40,"Swimming","Singing");
+            Hero secondHero = new Hero("Jack",40,"Swimming","Singing");
+            mySquad.addHero(firstHero);
+            mySquad.addHero(secondHero);
+        },"You cannot add heroes to a full squad!");
+    }
+
 
 
 
