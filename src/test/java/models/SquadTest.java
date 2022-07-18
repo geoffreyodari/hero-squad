@@ -39,7 +39,7 @@ public class SquadTest {
         Squad newSquad = new Squad("Avengers","Fight Crime",1);
         Hero newHero = new Hero("James",40,"Swimming","Singing");
         newSquad.addHero(newHero);
-        assertTrue(newSquad.getHeroes().equals(newHero.getHero()));
+        assertTrue(newSquad.getMembers().equals(newHero.getHero()));
 
     }
 
@@ -49,9 +49,19 @@ public class SquadTest {
         String response = "squad full";
         Squad mySquad = new Squad("Avengers","Fight Crime",1);
         Hero firstHero = new Hero("James",40,"Swimming","Singing");
-        Hero secondHero = new Hero("Jack",45,"Dancing","Singing");
+        Hero secondHero = new Hero("Jack",40,"Swimming","Singing");
         mySquad.addHero(firstHero);
-        assertEquals(response,mySquad.addHero(secondHero));
+        assertFalse(mySquad.addHero(secondHero));
+
+    }
+
+    @Test
+    public void test_DuplicateHeroCannotBeAddedToSquad(){
+        Squad mySquad2 = new Squad("Avengers","Fight Crime",3);
+        Hero firstHero = new Hero("James",40,"Swimming","Singing");
+        Hero secondHero = new Hero("James",41,"Swimming","Singing");
+        mySquad2.addHero(firstHero);
+        assertTrue(mySquad2.heroExists(secondHero));
 
     }
 

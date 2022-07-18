@@ -2,7 +2,6 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Squad {
 
@@ -10,9 +9,10 @@ public class Squad {
     private String name;
     private String cause;
     private int size;
+    private static int squadSize = 0 ;
 
     private static ArrayList<Squad> mInstances = new ArrayList();
-    private  ArrayList<Hero> mHero = new ArrayList<Hero>();
+    private  ArrayList<Hero> members = new ArrayList<Hero>();
 
     public Squad(String name, String cause , int size){
         this.name = name;
@@ -33,7 +33,7 @@ public class Squad {
         return  getName()  == squad.getName()&&
                 getCause() == squad.getCause()&&
                 getSize()  == squad.getSize()&&
-                mHero.equals(squad.getHeroes());
+                members.equals(squad.getMembers());
 
     }
 
@@ -50,18 +50,43 @@ public class Squad {
     }
 
 
-    public String addHero(Hero hero){
-        if(mHero.size()<this.size){
-            mHero.add(hero);
-            return "Success";
-        }else{
-            return "squad full";
+    public Boolean addHero(Hero hero){
+
+
+        if (squadSize>=size){
+            return false;
         }
+
+        if (this.heroExists(hero)){
+            return false;
+        }
+
+        this.members.add(hero);
+        squadSize++;
+        return true;
     }
 
-    public List getHeroes(){
-        return mHero;
+
+
+    public Boolean heroExists(Hero hero){
+        Boolean exists = false;
+        for(Squad mySquad : this.mInstances){
+            for( Hero hero1 : mySquad.members){
+                exists = hero1.getName().equals(hero.getName());
+            }
+        }
+        return exists;
     }
+
+
+
+    public List getMembers(){
+        return this.members;
+    }
+
+
+
+
 
 
 }
