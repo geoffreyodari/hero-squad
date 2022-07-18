@@ -51,17 +51,16 @@ public class Squad {
 
 
     public Boolean addHero(Hero hero){
-
-
-        if (squadSize>=size){
-            return false;
+        if (squadSize >= size){
+            throw new UnsupportedOperationException("You cannot add heroes to a full squad!");
         }
 
         if (this.heroExists(hero)){
-            return false;
+           return false;
         }
 
         this.members.add(hero);
+
         squadSize++;
         return true;
     }
@@ -83,8 +82,6 @@ public class Squad {
     public List getMembers(){
         return this.members;
     }
-
-
 
 
 
