@@ -7,23 +7,24 @@
                 <form action="/add_hero" method="post">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input class="form-control" name="name" type="text">
+                        <input class="form-control" name="name" type="text" placeholder="Hero Name">
                     </div>
                     <div class="mb-3">
                         <label for="age" class="form-label">age</label>
-                        <input class="form-control" name="age" type="text">
+                        <input class="form-control" name="age" type="text" placeholder="Heroes age">
                     </div>
                     <div class="mb-3">
                         <label for="power" class="form-label">Power</label>
-                        <input class="form-control" name="power" type="text">
+                        <input class="form-control" name="power" type="text" placeholder="Heroes Powers">
                     </div>
                     <div class="mb-3">
                         <label for="weakness" class="form-label">Weakness</label>
-                        <input class="form-control" name="weakness" type="text">
+                        <input class="form-control" name="weakness" type="text" placeholder="Heroes Weakness">
                     </div>
                     <div class="mb-3">
-                        <label for="weakness" class="form-label">Squad</label>
+                        <label for="squad" class="form-label">Heroe's Squad</label>
                         <select name="id" class="form-control">
+                            <option value="">Select Squad</option>
                             {{#each mySquads}}
                                 <option value="{{id}}">{{name}}</option>
                             {{/each}}

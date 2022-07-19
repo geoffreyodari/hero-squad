@@ -1,7 +1,7 @@
-# Hero Division
+# Hero Squad
 An application to keep track different Squads their cause and their Heroes.
 
-Created by Geoffrey Odari
+Created by Geoffrey Odari.
 ## View demo
 
 
