@@ -12,7 +12,7 @@ public class App {
         staticFileLocation("/public");
 
         get("/", (request, response) -> {
-            return new ModelAndView(new HashMap(), "list.hbs");
+            return new ModelAndView(new HashMap(), "home.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/squad", (request, response) -> {
