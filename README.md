@@ -3,7 +3,7 @@ An application to create Heroes and assign them to Squads to fight for different
 
 Created by Geoffrey Odari.
 ## View demo
-
+https://odari-hero-squad.herokuapp.com/
 
 ### Authors
 Geoffrey Odari
