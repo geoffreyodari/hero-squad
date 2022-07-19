@@ -3,11 +3,8 @@
     <section class="col-3 bg-light pb-3">
         <h5 class="display-5 text-hero">Squads</h5>
         <div class="list-group list-group-flush">
-            <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-              The current link item
-            </a>
             {{#each mySquads}}
-            <a href="/home/{{id}}" class="list-group-item list-group-item-action">{{name}}</a>
+                    <a href="/squad/{{id}}" class="list-group-item list-group-item-action">{{name}}</a>
             {{/each}}
         </div>
     </section>
@@ -31,12 +28,26 @@
                         <tr>
                             <td>{{name}}</td>
                             <td>{{age}}</td>
-                            <td>{{powers}}</td>
+                            <td>{{power}}</td>
                             <td>{{weakness}}</td>
                         </tr>
                     {{/each}}
                 </tbody>
               </table>
+            {{else}}
+            <div class="alert alert-warning" role="alert">
+                You do not have any heroes here. Click <a href="/hero_form" class="alert-link">here</a> to add a Hero.
+            </div>
+            {{/if}}
+        {{else}}
+            {{#if mySquads}}
+                <div class="alert alert-info" role="alert">
+                    Please select a squad to views members.
+                </div>
+            {{else}}
+                <div class="alert alert-warning" role="alert">
+                    You do not have any squad. Click <a href="/squad_form" class="alert-link">here</a> to add a squad.
+                </div>
             {{/if}}
     </section>  
     {{/if}}
