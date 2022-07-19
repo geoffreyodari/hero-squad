@@ -1,5 +1,5 @@
 # Hero Squad
-An application to keep track different Squads their cause and their Heroes.
+An application to create Heroes and assign them to Squads to fight for different causes.
 
 Created by Geoffrey Odari.
 ## View demo
