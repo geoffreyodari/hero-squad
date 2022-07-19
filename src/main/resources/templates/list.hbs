@@ -3,18 +3,17 @@
     <section class="col-3 bg-light pb-3">
         <h5 class="display-5 text-hero">Squads</h5>
         <div class="list-group list-group-flush">
-            <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-              The current link item
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-            <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-            <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
+            {{#each mySquads}}
+                    <a href="/squad/{{id}}" class="list-group-item list-group-item-action">{{name}}</a>
+            {{/each}}
         </div>
     </section>
     <section class="col-9">
-            <h5 class="display-6 text-muted">Squad</h5>
+        {{#if name}}
+            <h5 class="display-6 text-muted">{{name}} squad</h5>
             <h6 class="text-muted">Cause</h6>
-            <p class="text-muted">Fighting Injustice</p>
+            <p class="text-muted">{{cause}}</p>
+            {{#if members}}
             <table class="table">
                 <thead>
                     <tr>
@@ -25,10 +24,33 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{#each members}}
+                        <tr>
+                            <td>{{name}}</td>
+                            <td>{{age}}</td>
+                            <td>{{power}}</td>
+                            <td>{{weakness}}</td>
+                        </tr>
+                    {{/each}}
                 </tbody>
               </table>
+            {{else}}
+            <div class="alert alert-warning" role="alert">
+                You do not have any heroes here. Click <a href="/hero_form" class="alert-link">here</a> to add a Hero.
+            </div>
+            {{/if}}
+        {{else}}
+            {{#if mySquads}}
+                <div class="alert alert-info" role="alert">
+                    Please select a squad to views members.
+                </div>
+            {{else}}
+                <div class="alert alert-warning" role="alert">
+                    You do not have any squad. Click <a href="/squad_form" class="alert-link">here</a> to add a squad.
+                </div>
+            {{/if}}
     </section>  
-
+    {{/if}}
 </div>
 {{/partial}}
 {{> layout.hbs}}

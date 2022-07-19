@@ -37,6 +37,10 @@ public class Squad {
 
     }
 
+    public int getId() {
+        return id;
+    }
+
     public int getSize() {
         return size;
     }
@@ -47,6 +51,10 @@ public class Squad {
 
     public String getName() {
         return name;
+    }
+
+    public static ArrayList<Squad> getAll() {
+        return mInstances;
     }
 
 

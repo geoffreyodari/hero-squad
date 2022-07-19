@@ -1,38 +1,46 @@
 {{#partial "content"}}
-<div class="row">
-    <section class="p-4 col-6 mx-auto">
-        <h5 class="display-6 text-hero">Add new hero</h5>
-        <form action="" method="post">
-            <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input class="form-control" type="text">
-            </div>
-            <div class="mb-3">
-                <label for="age" class="form-label">age</label>
-                <input class="form-control" type="number">
-            </div>
-            <div class="mb-3">
-                <label for="power" class="form-label">Power</label>
-                <input class="form-control" type="text">
-            </div>
-            <div class="mb-3">
-                <label for="weakness" class="form-label">Weakness</label>
-                <input class="form-control" type="text">
-            </div>
-            <div class="mb-3">
-                <label for="weakness" class="form-label">Squad</label>
-                <select class="form-control">
-                    <option value="">Squad1</option>
-                    <option value="">Squad2</option>
-                    <option value="">Squad3</option>
-                </select>
-            </div>
-            <div class="mb-3 text-center">
-                <input type="submit" value="Submit" class="btn-hero">
-            </div>
 
-        </form>  
-    </section>  
-</div> 
+        <div class="row">
+            <section class="p-4 col-6 mx-auto">
+            {{#if mySquads}}
+                <h5 class="display-6 text-hero">Add new hero</h5>
+                <form action="/add_hero" method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input class="form-control" name="name" type="text">
+                    </div>
+                    <div class="mb-3">
+                        <label for="age" class="form-label">age</label>
+                        <input class="form-control" name="age" type="text">
+                    </div>
+                    <div class="mb-3">
+                        <label for="power" class="form-label">Power</label>
+                        <input class="form-control" name="power" type="text">
+                    </div>
+                    <div class="mb-3">
+                        <label for="weakness" class="form-label">Weakness</label>
+                        <input class="form-control" name="weakness" type="text">
+                    </div>
+                    <div class="mb-3">
+                        <label for="weakness" class="form-label">Squad</label>
+                        <select name="id" class="form-control">
+                            {{#each mySquads}}
+                                <option value="{{id}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <input type="submit" value="Submit" class="btn-hero">
+                    </div>
+                </form>
+            {{else}}
+                <div class="alert alert-warning" role="alert">
+                    You do not have any squad. Click <a href="/squad_form" class="alert-link">here</a> to add a squad.
+                </div>
+            {{/if}}
+            </section>
+        </div>
+
+
 {{/partial}}
 {{> layout.hbs}}

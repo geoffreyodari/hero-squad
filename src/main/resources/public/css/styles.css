@@ -1,0 +1,37 @@
+.text-hero{
+    color:#ab14e1;
+}
+
+.table thead{
+    color:#ab14e1;
+}
+
+.btn-hero{
+    background: #ab14e1;
+    color: white;
+}
+
+.btn-hero:hover{
+    color:#ab14e1;
+    background: white;
+}
+
+.table{
+    border-color: #ab14e1;
+}
+
+.nav-link{
+    color:#ab14e1;
+}
+
+
+
+.form-control{
+    border-color: #ab14e1;
+}
+
+.list-group-item.active {
+    color: var(--bs-list-group-active-color);
+    background-color:  #ab14e1;
+    border-color:  #ab14e1;
+}
