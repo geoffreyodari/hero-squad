@@ -14,7 +14,7 @@ public class App {
             return new ModelAndView(new HashMap(), "list.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/home", (request, response) -> {
+        get("/squad", (request, response) -> {
             return new ModelAndView(request.session().attribute("mySquadArrayList"), "list.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -26,7 +26,7 @@ public class App {
             return new ModelAndView(new HashMap(), "squad_form.hbs");
         }, new HandlebarsTemplateEngine());
 
-        post("/add_form", (request, response) -> {
+        post("/add_squad", (request, response) -> {
             request.session();
             String name = request.queryParams("name");
             String cause = request.queryParams("cause");
@@ -40,7 +40,7 @@ public class App {
             return new ModelAndView(model, "list.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/home/:id", (request, response) -> {
+        get("/squad/:id", (request, response) -> {
             String id = request.params(":id");
             Integer intId = Integer.parseInt(id);
 
