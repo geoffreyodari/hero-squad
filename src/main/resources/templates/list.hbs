@@ -8,49 +8,58 @@
             {{/each}}
         </div>
     </section>
+
     <section class="col-9">
-        {{#if name}}
-            <h5 class="display-6 text-muted">{{name}} squad</h5>
-            <h6 class="text-muted">Cause</h6>
-            <p class="text-muted">{{cause}}</p>
-            {{#if members}}
-            <table class="table">
-                <thead>
-                    <tr>
-                        <td>Name</td>
-                        <td>Age</td>
-                        <td>Powers</td>
-                        <td>Weakness</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each members}}
-                        <tr>
-                            <td>{{name}}</td>
-                            <td>{{age}}</td>
-                            <td>{{power}}</td>
-                            <td>{{weakness}}</td>
-                        </tr>
-                    {{/each}}
-                </tbody>
-              </table>
-            {{else}}
+        {{#if myError}}
             <div class="alert alert-warning" role="alert">
-                You do not have any heroes here. Click <a href="/hero_form" class="alert-link">here</a> to add a Hero.
+                {{myError}}
             </div>
-            {{/if}}
         {{else}}
-            {{#if mySquads}}
-                <div class="alert alert-info" role="alert">
-                    Please select a squad to views members.
-                </div>
+            {{#if name}}
+                <h5 class="display-6 text-muted">{{name}} squad</h5>
+                <h6 class="text-muted">Cause</h6>
+                <p class="text-muted">{{cause}}</p>
+                {{#if members}}
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Age</td>
+                            <td>Powers</td>
+                            <td>Weakness</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each members}}
+                            <tr>
+                                <td>{{name}}</td>
+                                <td>{{age}}</td>
+                                <td>{{power}}</td>
+                                <td>{{weakness}}</td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                {{else}}
+                    <div class="alert alert-warning" role="alert">
+                        You do not have any heroes here. Click <a href="/hero_form" class="alert-link">here</a> to add a Hero.
+                    </div>
+                {{/if}}
             {{else}}
-                <div class="alert alert-warning" role="alert">
-                    You do not have any squad. Click <a href="/squad_form" class="alert-link">here</a> to add a squad.
-                </div>
+                {{#if mySquads}}
+                    <div class="alert alert-info" role="alert">
+                        Please select a squad to views members.
+                    </div>
+                {{else}}
+                    <div class="alert alert-warning" role="alert">
+                        You do not have any squad. Click <a href="/squad_form" class="alert-link">here</a> to add a squad.
+                    </div>
+                {{/if}}
             {{/if}}
+        {{/if}}
+
     </section>  
-    {{/if}}
+
 </div>
 {{/partial}}
 {{> layout.hbs}}

@@ -47,11 +47,13 @@ public class SquadTest {
 
     @Test
     public void test_DuplicateHeroCannotBeAddedToSquad(){
+        Assertions.assertThrows(UnsupportedOperationException.class, () -> {
         Squad mySquad2 = new Squad("Avengers","Fight Crime",5);
         Hero firstHero = new Hero("James",40,"Swimming","Singing");
         Hero secondHero = new Hero("James",41,"Swimming","Singing");
         mySquad2.addHero(firstHero);
-        assertTrue(mySquad2.heroExists(secondHero));
+        mySquad2.addHero(secondHero);
+        },"The hero already Exists!");
 
     }
     @Test
@@ -62,7 +64,7 @@ public class SquadTest {
             Hero secondHero = new Hero("Jack",40,"Swimming","Singing");
             mySquad.addHero(firstHero);
             mySquad.addHero(secondHero);
-        },"You cannot add heroes to a full squad!");
+        },"You cannot add hero to a full squad!");
     }
 
 

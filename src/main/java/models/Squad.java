@@ -58,19 +58,19 @@ public class Squad {
     }
 
 
-    public Boolean addHero(Hero hero){
+    public void addHero(Hero hero){
         if (squadSize >= size){
-            throw new UnsupportedOperationException("You cannot add heroes to a full squad!");
+            throw new UnsupportedOperationException("You cannot add hero to a full squad!");
         }
 
-        if (this.heroExists(hero)){
-           return false;
+        if (this.heroExists(hero)==true){
+            throw new UnsupportedOperationException("The hero already Exists!");
         }
 
         this.members.add(hero);
 
         squadSize++;
-        return true;
+
     }
 
 
@@ -80,6 +80,8 @@ public class Squad {
         for(Squad mySquad : this.mInstances){
             for( Hero hero1 : mySquad.members){
                 exists = hero1.getName().equals(hero.getName());
+
+
             }
         }
         return exists;

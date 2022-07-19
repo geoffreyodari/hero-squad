@@ -15,7 +15,7 @@ public class App {
             return new ModelAndView(new HashMap(), "home.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/squad", (request, response) -> {
+        get("/squad/", (request, response) -> {
             return new ModelAndView(request.session().attribute("mySquadArrayList"), "list.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -32,16 +32,22 @@ public class App {
 
         post("/add_squad", (request, response) -> {
             request.session();
-            String name = request.queryParams("name");
-            String cause = request.queryParams("cause");
-            String size = request.queryParams("number");
-            Integer intSize = Integer.parseInt(size);
-            Squad newSquad = new Squad(name,cause,intSize);
-            ArrayList mySquadArrayList = newSquad.getAll();
-            Map<Object, ArrayList<Squad>> model = new HashMap<>();
-            request.session().attribute("mySquadArrayList", mySquadArrayList);
-            model.put("mySquads",mySquadArrayList);
-            return new ModelAndView(model, "list.hbs");
+            Map<Object, Object> model = new HashMap<>();
+            try{
+                String name = request.queryParams("name");
+                String cause = request.queryParams("cause");
+                String size = request.queryParams("number");
+                Integer intSize = Integer.parseInt(size);
+                Squad newSquad = new Squad(name,cause,intSize);
+                ArrayList mySquadArrayList = newSquad.getAll();
+                request.session().attribute("mySquadArrayList", mySquadArrayList);
+                model.put("mySquads",mySquadArrayList);
+                return new ModelAndView(model, "list.hbs");
+            }catch (Exception exception) {
+                model.put("myError",exception);
+                return new ModelAndView(model,"/squad_form.hbs");
+            }
+
         }, new HandlebarsTemplateEngine());
 
         get("/squad/:id", (request, response) -> {
@@ -57,31 +63,40 @@ public class App {
             model.put("name", squadName);
             model.put("cause", squadCause);
             model.put("members",squadMembers);
-
             return new ModelAndView(model, "list.hbs");
         }, new HandlebarsTemplateEngine());
 
         post("/add_hero",(request,response)->{
             ArrayList mySquadArrayList = request.session().attribute("mySquadArrayList");
-
-            String name = request.queryParams("name");
-            String age = request.queryParams("age");
-            String power = request.queryParams("power");
-            String weakness = request.queryParams("weakness");
-            String id = request.queryParams("id");
-            Integer intAge = Integer.parseInt(age);
-            Integer intId = Integer.parseInt(id);
-
-            Hero newHero = new Hero(name,intAge,power,weakness);
             Map<Object, Object> model = new HashMap<>();
+            try{
+                String name = request.queryParams("name");
+                String age = request.queryParams("age");
+                String power = request.queryParams("power");
+                String weakness = request.queryParams("weakness");
+                String id = request.queryParams("id");
+                Integer intAge = Integer.parseInt(age);
+                Integer intId = Integer.parseInt(id);
 
-            for(Object mySquad:mySquadArrayList) {
-                if(((Squad) mySquad).getId()==1){
-                    ((Squad) mySquad).addHero(newHero);
-                };
+                Hero newHero = new Hero(name,intAge,power,weakness);
+                for(Object mySquad:mySquadArrayList) {
+                    if(((Squad) mySquad).getId()==intId){
+                        try {
+                            ((Squad) mySquad).addHero(newHero);
+                        }catch (UnsupportedOperationException exception) {
+                            model.put("myError",exception);
+                            return new ModelAndView(model,"/hero_form.hbs");
+                        }
+                    };
+                }
+                model.put("mySquads",mySquadArrayList);
+                return new ModelAndView(model,"list.hbs");
+            }catch (Exception exception) {
+                model.put("myError",exception);
+                return new ModelAndView(model,"/hero_form.hbs");
             }
-            model.put("mySquads",mySquadArrayList);
-            return new ModelAndView(model,"list.hbs");
+
+
         },new HandlebarsTemplateEngine());
 
     }
