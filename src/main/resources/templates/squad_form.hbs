@@ -2,6 +2,11 @@
 <div class="row">
     <section class="p-4 col-6 mx-auto">
         <h5 class="display-6 text-hero">Add new squad</h5>
+        {{#if myError}}
+                <div class="alert alert-warning" role="alert">
+                    {{myError}}
+                </div>
+        {{/if}}
         <form action="/add_squad" method="post">
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
