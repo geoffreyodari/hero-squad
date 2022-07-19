@@ -19,7 +19,10 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         get("/hero_form", (request, response) -> {
-            return new ModelAndView(new HashMap(), "hero_form.hbs");
+            ArrayList mySquadArrayList = request.session().attribute("mySquadArrayList");
+            Map<Object, Object> model = new HashMap<>();
+            model.put("mySquads",mySquadArrayList);
+            return new ModelAndView(model, "hero_form.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/squad_form", (request, response) -> {
@@ -60,6 +63,8 @@ public class App {
 
             return new ModelAndView(model, "list.hbs");
         }, new HandlebarsTemplateEngine());
+
+
 
     }
 }
