@@ -12,14 +12,20 @@ public class App {
         staticFileLocation("/public");
 
         get("/", (request, response) -> {
+            request.session();
             return new ModelAndView(new HashMap(), "home.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/squad/", (request, response) -> {
-            return new ModelAndView(request.session().attribute("mySquadArrayList"), "list.hbs");
+            request.session();
+            ArrayList mySquadArrayList = request.session().attribute("mySquadArrayList");
+            Map<Object, Object> model = new HashMap<>();
+            model.put("mySquads",mySquadArrayList);
+            return new ModelAndView(model, "list.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/hero_form", (request, response) -> {
+            request.session();
             ArrayList mySquadArrayList = request.session().attribute("mySquadArrayList");
             Map<Object, Object> model = new HashMap<>();
             model.put("mySquads",mySquadArrayList);
@@ -51,6 +57,7 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         get("/squad/:id", (request, response) -> {
+            request.session();
             String id = request.params(":id");
             Integer intId = Integer.parseInt(id);
             ArrayList mySquadArrayList = request.session().attribute("mySquadArrayList");
