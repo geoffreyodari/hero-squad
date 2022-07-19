@@ -6,15 +6,17 @@
             <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
               The current link item
             </a>
-            <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-            <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-            <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
+            {{#each mySquads}}
+            <a href="/home/{{id}}" class="list-group-item list-group-item-action">{{name}}</a>
+            {{/each}}
         </div>
     </section>
     <section class="col-9">
-            <h5 class="display-6 text-muted">Squad</h5>
+        {{#if name}}
+            <h5 class="display-6 text-muted">{{name}} squad</h5>
             <h6 class="text-muted">Cause</h6>
-            <p class="text-muted">Fighting Injustice</p>
+            <p class="text-muted">{{cause}}</p>
+            {{#if members}}
             <table class="table">
                 <thead>
                     <tr>
@@ -25,10 +27,19 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{#each members}}
+                        <tr>
+                            <td>{{name}}</td>
+                            <td>{{age}}</td>
+                            <td>{{powers}}</td>
+                            <td>{{weakness}}</td>
+                        </tr>
+                    {{/each}}
                 </tbody>
               </table>
+            {{/if}}
     </section>  
-
+    {{/if}}
 </div>
 {{/partial}}
 {{> layout.hbs}}
